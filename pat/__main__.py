@@ -50,7 +50,10 @@ def main():
         print(f"pcat version {VERSION}")
         exit(0)
 
-    pycat = PyCat(args.FILE, args.number, args.non_blank, args.show_ends, args.show_tabs)
+    try:
+        PyCat(args.FILE, args.number, args.non_blank, args.show_ends, args.show_tabs)()
+    except Exception as error:
+        print(error)
+        return -1
     
-    pycat()
-    
+    return 0
